@@ -44,30 +44,22 @@ for row in s_file:
 
 import matplotlib.pyplot as plt
 
-fig, ax = plt.subplots(2)
+fig, ax = plt.subplots(2, sharex=True)
 
-ax[0].plot(dates,highs, c="red", alpha = 0.5)
-ax[0].plot(dates, lows, c="blue",  alpha = 0.5)
+ax[0].plot(dates2,highs2, c="red", alpha = 0.5)
+ax[0].plot(dates2,lows2, c="blue",  alpha = 0.5)
 
-ax[1].plot(dates2,highs2, c="red", alpha = 0.5)
-ax[1].plot(dates2, lows2, c="blue",  alpha = 0.5)
-
-ax[0].title("Death Valley, CA US", fontsize= 16)
-ax[0].xlabel("")
-ax[0].ylabel("Temperature (F)",fontsize=16)
-ax[0].tick_params(axis="both",labelsize=12)
-
-ax[1].title("Sitka, AK US", fontsize= 16)
-ax[1].xlabel("")
-ax[1].ylabel("Temperature (F)",fontsize=16)
-ax[1].tick_params(axis="both",labelsize=12)
+ax[1].plot(dates,highs, c="red", alpha = 0.5)
+ax[1].plot(dates, lows, c="blue",  alpha = 0.5)
 
 fig.autofmt_xdate()
 
+ax[0].fill_between(dates2, highs2, lows2, facecolor = 'blue', alpha=0.1)
+ax[1].fill_between(dates, highs, lows, facecolor = 'blue', alpha=0.1)
 
-ax[0].fill_between(dates, highs, lows, facecolor = 'blue', alpha=0.1)
-ax[1].fill_between(dates2, highs2, lows2, facecolor = 'blue', alpha=0.1)
-
+ax[0].set_title('Sitka Airport, AK US')
+ax[1].set_title('Death Valley, CA US')
+fig.suptitle('Temperature Comparison Between Sitka Airport, AK US and Death Valley, CA US')
 
 plt.show()
 
